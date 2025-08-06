@@ -23,7 +23,7 @@ class ViewController extends GetxController {
     pageController.animateToPage(
       index,
       duration: const Duration(milliseconds: 300),
-      curve: Curves.easeInOut,
+      curve: Curves.bounceIn,
     );
   }
 
