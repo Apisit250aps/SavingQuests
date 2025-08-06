@@ -10,10 +10,11 @@ class MainView extends GetView<ViewController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
-        centerTitle: true,
         title: Obx(
-          () => Text(controller.views[controller.currentIndex.value].title),
+          () => Text(
+            controller.views[controller.currentIndex.value].title,
+            style: TextStyle(fontWeight: FontWeight.w600),
+          ),
         ),
       ),
       body: PageView(

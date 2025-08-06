@@ -13,7 +13,7 @@ class ViewController extends GetxController {
     ViewItem(
       view: HomeView(),
       icon: Icon(PhosphorIcons.wallet(), size: 32.0),
-      title: "Home",
+      title: "Wallet",
     ),
     ViewItem(
       view: TransactionsView(),

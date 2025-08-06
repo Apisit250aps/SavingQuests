@@ -24,19 +24,15 @@ class TransactionsCard extends StatelessWidget {
                 ),
               ),
               const Spacer(),
-              InkWell(
-                onTap: () {
+              IconButton(
+                onPressed: () {
                   print(">>> hello world");
                 },
-                child: Icon(
-                  PhosphorIcons.plus(),
-                  color: Colors.grey[600],
-                  size: 20,
-                ),
+                icon: Icon(PhosphorIcons.plus(), size: 20),
               ),
             ],
           ),
-          const SizedBox(height: 50),
+          const SizedBox(height: 25),
           Column(
             children: [
               // Bitcoin

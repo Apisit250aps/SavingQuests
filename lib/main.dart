@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:save_quests/controllers/bindings/initial_bindings.dart';
 import 'package:save_quests/views/main_view.dart';
 
@@ -15,7 +16,13 @@ class SavingQuests extends StatelessWidget {
     return GetMaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
+        textTheme: GoogleFonts.itimTextTheme(),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.white,
+          surface: Colors.white,
+          onSurface: Colors.black,
+          onError: Colors.red,
+        ),
         appBarTheme: AppBarTheme(
           centerTitle: true,
           backgroundColor: Colors.white,
@@ -27,6 +34,13 @@ class SavingQuests extends StatelessWidget {
           elevation: 0,
         ),
         scaffoldBackgroundColor: Colors.white,
+        iconButtonTheme: IconButtonThemeData(
+          style: ButtonStyle(
+            backgroundColor: WidgetStateProperty.all<Color>(Colors.grey[200]!),
+            iconColor: WidgetStateProperty.all<Color>(Colors.black),
+            shape: WidgetStateProperty.all<OutlinedBorder>(CircleBorder()),
+          ),
+        ),
       ),
       initialBinding: InitialBinding(),
       home: const MainView(),
