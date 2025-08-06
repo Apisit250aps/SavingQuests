@@ -10,7 +10,6 @@ void main() {
 class SavingQuests extends StatelessWidget {
   const SavingQuests({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -27,7 +26,7 @@ class SavingQuests extends StatelessWidget {
           backgroundColor: Colors.white,
           elevation: 0,
         ),
-        scaffoldBackgroundColor: Colors.white
+        scaffoldBackgroundColor: Colors.white,
       ),
       initialBinding: InitialBinding(),
       home: const MainView(),

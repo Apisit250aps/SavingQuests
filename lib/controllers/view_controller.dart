@@ -12,13 +12,13 @@ class ViewController extends GetxController {
   final List<ViewItem> views = [
     ViewItem(
       view: HomeView(),
-      icon: Icon(PhosphorIcons.house(), size: 32.0),
+      icon: Icon(PhosphorIcons.wallet(), size: 32.0),
       title: "Home",
     ),
     ViewItem(
       view: TransactionsView(),
-      icon: Icon(PhosphorIcons.invoice(), size: 32.0),
-      title: "Transactions",
+      icon: Icon(PhosphorIcons.cardholder(), size: 32.0),
+      title: "Statements",
     ),
   ];
 
