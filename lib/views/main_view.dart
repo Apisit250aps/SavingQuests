@@ -25,7 +25,7 @@ class MainView extends GetView<ViewController> {
           (index) => controller.views[index].view,
         ),
       ),
-      bottomNavigationBar: AppBottomNavigation(),
+      // bottomNavigationBar: AppBottomNavigation(),
     );
   }
 }
