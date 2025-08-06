@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:save_quests/views/main_view.dart';
 
 void main() {
@@ -11,7 +12,7 @@ class SavingQuests extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
@@ -29,9 +30,10 @@ class SavingQuests extends StatelessWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
       ),
       home: const MainView(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
