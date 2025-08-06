@@ -15,7 +15,7 @@ class AppBottomNavigation extends GetWidget<ViewController> {
         items: List.generate(
           controller.views.length,
           (index) => BottomNavigationBarItem(
-            icon: Icon(controller.views[index].icon),
+            icon: controller.views[index].icon,
             label: controller.views[index].title,
           ),
         ),

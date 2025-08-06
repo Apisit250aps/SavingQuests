@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:save_quests/views/home/home_view.dart';
 import 'package:save_quests/views/transactions/transactions_view.dart';
 
@@ -9,10 +10,14 @@ class ViewController extends GetxController {
   late PageController pageController;
 
   final List<ViewItem> views = [
-    ViewItem(view: HomeView(), icon: Icons.home, title: "Home"),
+    ViewItem(
+      view: HomeView(),
+      icon: Icon(PhosphorIcons.house(), size: 32.0),
+      title: "Home",
+    ),
     ViewItem(
       view: TransactionsView(),
-      icon: Icons.pause_presentation,
+      icon: Icon(PhosphorIcons.invoice(), size: 32.0),
       title: "Transactions",
     ),
   ];
@@ -45,7 +50,7 @@ class ViewController extends GetxController {
 
 class ViewItem {
   final Widget view;
-  final IconData icon;
+  final Icon icon;
   final String title;
 
   ViewItem({required this.view, required this.icon, required this.title});
