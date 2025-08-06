@@ -13,13 +13,16 @@ class MainView extends GetView<ViewController> {
         elevation: 0,
         centerTitle: true,
         title: Obx(
-          () => Text(controller.currentIndex.value == 0 ? "Home" : "Settings"),
+          () => Text(controller.views[controller.currentIndex.value].title),
         ),
       ),
       body: PageView(
         controller: controller.pageController,
         onPageChanged: controller.onPageChanged,
-        children: [],
+        children: List.generate(
+          controller.views.length,
+          (index) => controller.views[index].view,
+        ),
       ),
       bottomNavigationBar: AppBottomNavigation(),
     );

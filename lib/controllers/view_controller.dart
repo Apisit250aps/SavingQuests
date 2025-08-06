@@ -1,10 +1,21 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:save_quests/views/home/home_view.dart';
+import 'package:save_quests/views/transactions/transactions_view.dart';
 
 class ViewController extends GetxController {
   var currentIndex = 0.obs;
 
   late PageController pageController;
+
+  final List<ViewItem> views = [
+    ViewItem(view: HomeView(), icon: Icons.home, title: "Home"),
+    ViewItem(
+      view: TransactionsView(),
+      icon: Icons.pause_presentation,
+      title: "Transactions",
+    ),
+  ];
 
   @override
   void onInit() {
@@ -23,11 +34,19 @@ class ViewController extends GetxController {
     pageController.animateToPage(
       index,
       duration: const Duration(milliseconds: 300),
-      curve: Curves.bounceIn,
+      curve: Curves.easeIn,
     );
   }
 
   void onPageChanged(int index) {
     currentIndex.value = index;
   }
+}
+
+class ViewItem {
+  final Widget view;
+  final IconData icon;
+  final String title;
+
+  ViewItem({required this.view, required this.icon, required this.title});
 }

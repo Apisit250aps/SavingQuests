@@ -8,20 +8,18 @@ class AppBottomNavigation extends GetWidget<ViewController> {
   @override
   Widget build(BuildContext context) {
     return Obx(
-        () => BottomNavigationBar(
-          currentIndex: controller.currentIndex.value,
-          onTap: controller.changePage,
-          type: BottomNavigationBarType.fixed,
-          selectedItemColor: Colors.blue,
-          unselectedItemColor: Colors.grey,
-          items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
-              label: 'Settings',
-            ),
-          ],
+      () => BottomNavigationBar(
+        currentIndex: controller.currentIndex.value,
+        onTap: controller.changePage,
+        type: BottomNavigationBarType.fixed,
+        items: List.generate(
+          controller.views.length,
+          (index) => BottomNavigationBarItem(
+            icon: Icon(controller.views[index].icon),
+            label: controller.views[index].title,
+          ),
         ),
-      );
+      ),
+    );
   }
 }

@@ -27,6 +27,7 @@ class SavingQuests extends StatelessWidget {
           backgroundColor: Colors.white,
           elevation: 0,
         ),
+        scaffoldBackgroundColor: Colors.white
       ),
       initialBinding: InitialBinding(),
       home: const MainView(),
