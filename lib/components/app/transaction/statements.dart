@@ -105,6 +105,10 @@ class Statements extends GetWidget<WalletController> {
                   groupedTransactions.entries.map((entry) {
                     final date = entry.key;
                     final transactions = entry.value;
+                    final sortedTxs = [...transactions]; // สร้างสำเนา
+                    sortedTxs.sort(
+                      (a, b) => a.createdAt.compareTo(b.createdAt),
+                    );
 
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -123,7 +127,7 @@ class Statements extends GetWidget<WalletController> {
                         ),
 
                         // Transactions for this date
-                        ...transactions.map(
+                        ...sortedTxs.map(
                           (tx) => Padding(
                             padding: const EdgeInsets.only(bottom: 8),
                             child: TransactionItem(transaction: tx),

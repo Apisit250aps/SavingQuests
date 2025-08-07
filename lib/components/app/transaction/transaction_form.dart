@@ -44,29 +44,19 @@ class _TransactionFormState extends State<TransactionForm> {
 
       _controller.addTransaction(transaction);
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: const Text(
-            'Transaction saved successfully',
-            style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          backgroundColor: Colors.black87,
-          behavior: SnackBarBehavior.floating,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-          margin: const EdgeInsets.all(16),
-        ),
+      // Show success message and close bottom sheet
+      Get.back();
+      Get.snackbar(
+        'Success',
+        'Transaction saved successfully',
+        backgroundColor: Colors.green.withOpacity(0.1),
+        colorText: Colors.green[700],
+        snackPosition: SnackPosition.TOP,
+        duration: const Duration(seconds: 2),
+        margin: const EdgeInsets.all(16),
+        borderRadius: 12,
+        icon: const Icon(Icons.check_circle, color: Colors.green),
       );
-      _formKey.currentState?.reset();
-      setState(() {
-        _selectedType = TransactionType.expense;
-        _selectedCategory = TransactionCategory.other;
-        _selectedDate = DateTime.now();
-      });
     }
   }
 
@@ -105,9 +95,8 @@ class _TransactionFormState extends State<TransactionForm> {
         fontSize: 14,
         fontWeight: FontWeight.w400,
       ),
-      prefixIcon: icon != null 
-        ? Icon(icon, color: Colors.black54, size: 20)
-        : null,
+      prefixIcon:
+          icon != null ? Icon(icon, color: Colors.black54, size: 20) : null,
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
         borderSide: const BorderSide(color: Colors.black12, width: 1),
@@ -130,229 +119,285 @@ class _TransactionFormState extends State<TransactionForm> {
       ),
       filled: true,
       fillColor: Colors.grey[50],
-      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
-      child: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              // Header
-              Container(
-                padding: const EdgeInsets.only(bottom: 32),
+      height: Get.height * 0.7,
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(20),
+        ),
+      ),
+      child: Column(
+        children: [
+          // Bottom Sheet Handle
+          Container(
+            width: 40,
+            height: 4,
+            margin: const EdgeInsets.only(top: 12, bottom: 8),
+            decoration: BoxDecoration(
+              color: Colors.grey[300],
+              borderRadius: BorderRadius.circular(2),
+            ),
+          ),
+
+          // Header with Close Button
+          Container(
+            padding: const EdgeInsets.fromLTRB(20, 8, 8, 16),
+            child: Row(
+              children: [
+                const Expanded(
+                  child: Text(
+                    'Add Transaction',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.black87,
+                      letterSpacing: -0.5,
+                    ),
+                  ),
+                ),
+                IconButton(
+                  onPressed: () => Get.back(),
+                  icon: const Icon(Icons.close, color: Colors.black54),
+                  padding: const EdgeInsets.all(8),
+                ),
+              ],
+            ),
+          ),
+
+          // Scrollable Form Content
+          Expanded(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+              child: Form(
+                key: _formKey,
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    const Text(
-                      'Add Transaction',
-                      style: TextStyle(
-                        fontSize: 28,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.black87,
-                        letterSpacing: -0.5,
+                    // Subtitle
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 24),
+                      child: Text(
+                        'Add a new income or expense transaction',
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.grey[600],
+                          fontWeight: FontWeight.w400,
+                        ),
                       ),
                     ),
-                    const SizedBox(height: 8),
-                    Text(
-                      'Add a new income or expense transaction',
-                      style: TextStyle(
+
+                    // Form Fields
+                    TextFormField(
+                      controller: _nameController,
+                      decoration: _buildInputDecoration(
+                        'Transaction Name',
+                        icon: Icons.receipt_long,
+                      ),
+                      style: const TextStyle(
                         fontSize: 16,
-                        color: Colors.grey[600],
+                        color: Colors.black87,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      validator: (value) =>
+                          value == null || value.isEmpty
+                              ? 'Please enter a name'
+                              : null,
+                    ),
+                    const SizedBox(height: 16),
+
+                    TextFormField(
+                      controller: _descController,
+                      decoration: _buildInputDecoration(
+                        'Description',
+                        icon: Icons.notes,
+                      ),
+                      style: const TextStyle(
+                        fontSize: 16,
+                        color: Colors.black87,
                         fontWeight: FontWeight.w400,
                       ),
+                      maxLines: 2,
+                      minLines: 1,
                     ),
-                  ],
-                ),
-              ),
+                    const SizedBox(height: 16),
 
-              // Form Fields
-              TextFormField(
-                controller: _nameController,
-                decoration: _buildInputDecoration('Transaction Name', icon: Icons.receipt_long),
-                style: const TextStyle(
-                  fontSize: 16,
-                  color: Colors.black87,
-                  fontWeight: FontWeight.w500,
-                ),
-                validator: (value) =>
-                    value == null || value.isEmpty ? 'Please enter a name' : null,
-              ),
-              const SizedBox(height: 20),
+                    TextFormField(
+                      controller: _amountController,
+                      decoration: _buildInputDecoration(
+                        'Amount',
+                        icon: Icons.attach_money,
+                      ),
+                      style: const TextStyle(
+                        fontSize: 18,
+                        color: Colors.black87,
+                        fontWeight: FontWeight.w600,
+                      ),
+                      keyboardType: TextInputType.number,
+                      validator: (value) =>
+                          value == null || double.tryParse(value) == null
+                              ? 'Please enter a valid amount'
+                              : null,
+                    ),
+                    const SizedBox(height: 16),
 
-              TextFormField(
-                controller: _descController,
-                decoration: _buildInputDecoration('Description', icon: Icons.notes),
-                style: const TextStyle(
-                  fontSize: 16,
-                  color: Colors.black87,
-                  fontWeight: FontWeight.w400,
-                ),
-                maxLines: 3,
-                minLines: 1,
-              ),
-              const SizedBox(height: 20),
-
-              TextFormField(
-                controller: _amountController,
-                decoration: _buildInputDecoration('Amount', icon: Icons.attach_money),
-                style: const TextStyle(
-                  fontSize: 18,
-                  color: Colors.black87,
-                  fontWeight: FontWeight.w600,
-                ),
-                keyboardType: TextInputType.number,
-                validator: (value) =>
-                    value == null || double.tryParse(value) == null
-                        ? 'Please enter a valid amount'
-                        : null,
-              ),
-              const SizedBox(height: 20),
-
-              Row(
-                children: [
-                  Expanded(
-                    child: DropdownButtonFormField<TransactionType>(
-                      value: _selectedType,
-                      items: TransactionType.values
-                          .map((type) => DropdownMenuItem(
-                                value: type,
-                                child: Row(
-                                  children: [
-                                    Icon(
-                                      type == TransactionType.expense 
-                                        ? Icons.remove_circle_outline 
-                                        : Icons.add_circle_outline,
-                                      color: type == TransactionType.expense 
-                                        ? Colors.red[400] 
-                                        : Colors.green[400],
-                                      size: 20,
+                    Row(
+                      children: [
+                        Expanded(
+                          child: DropdownButtonFormField<TransactionType>(
+                            value: _selectedType,
+                            items: TransactionType.values
+                                .map(
+                                  (type) => DropdownMenuItem(
+                                    value: type,
+                                    child: Row(
+                                      children: [
+                                        Icon(
+                                          type == TransactionType.expense
+                                              ? Icons.remove_circle_outline
+                                              : Icons.add_circle_outline,
+                                          color: type == TransactionType.expense
+                                              ? Colors.red[400]
+                                              : Colors.green[400],
+                                          size: 20,
+                                        ),
+                                        const SizedBox(width: 8),
+                                        Text(
+                                          type.name,
+                                          style: const TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                    const SizedBox(width: 8),
-                                    Text(
-                                      type.name,
+                                  ),
+                                )
+                                .toList(),
+                            onChanged: (val) {
+                              if (val != null) setState(() => _selectedType = val);
+                            },
+                            decoration: _buildInputDecoration('Type'),
+                            dropdownColor: Colors.white,
+                            style: const TextStyle(color: Colors.black87),
+                          ),
+                        ),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: DropdownButtonFormField<TransactionCategory>(
+                            value: _selectedCategory,
+                            items: TransactionCategory.values
+                                .map(
+                                  (category) => DropdownMenuItem(
+                                    value: category,
+                                    child: Text(
+                                      category.name,
                                       style: const TextStyle(
                                         fontSize: 14,
                                         fontWeight: FontWeight.w500,
                                       ),
                                     ),
-                                  ],
-                                ),
-                              ))
-                          .toList(),
-                      onChanged: (val) {
-                        if (val != null) setState(() => _selectedType = val);
-                      },
-                      decoration: _buildInputDecoration('Type'),
-                      dropdownColor: Colors.white,
-                      style: const TextStyle(color: Colors.black87),
-                    ),
-                  ),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: DropdownButtonFormField<TransactionCategory>(
-                      value: _selectedCategory,
-                      items: TransactionCategory.values
-                          .map((category) => DropdownMenuItem(
-                                value: category,
-                                child: Text(
-                                  category.name,
-                                  style: const TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w500,
                                   ),
-                                ),
-                              ))
-                          .toList(),
-                      onChanged: (val) {
-                        if (val != null) setState(() => _selectedCategory = val);
-                      },
-                      decoration: _buildInputDecoration('Category'),
-                      dropdownColor: Colors.white,
-                      style: const TextStyle(color: Colors.black87),
+                                )
+                                .toList(),
+                            onChanged: (val) {
+                              if (val != null)
+                                setState(() => _selectedCategory = val);
+                            },
+                            decoration: _buildInputDecoration('Category'),
+                            dropdownColor: Colors.white,
+                            style: const TextStyle(color: Colors.black87),
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 20),
+                    const SizedBox(height: 16),
 
-              InkWell(
-                onTap: () => _pickDate(context),
-                borderRadius: BorderRadius.circular(12),
-                child: InputDecorator(
-                  decoration: _buildInputDecoration('Date', icon: Icons.calendar_today),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        DateFormat.yMMMMd().format(_selectedDate),
-                        style: const TextStyle(
-                          fontSize: 16,
-                          color: Colors.black87,
-                          fontWeight: FontWeight.w500,
+                    InkWell(
+                      onTap: () => _pickDate(context),
+                      borderRadius: BorderRadius.circular(12),
+                      child: InputDecorator(
+                        decoration: _buildInputDecoration(
+                          'Date',
+                          icon: Icons.calendar_today,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              DateFormat.yMMMMd().format(_selectedDate),
+                              style: const TextStyle(
+                                fontSize: 16,
+                                color: Colors.black87,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                            const Icon(
+                              Icons.keyboard_arrow_down,
+                              color: Colors.black54,
+                            ),
+                          ],
                         ),
                       ),
-                      const Icon(
-                        Icons.keyboard_arrow_down,
-                        color: Colors.black54,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(height: 32),
-
-              // Submit Button
-              Container(
-                height: 56,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
-                      blurRadius: 8,
-                      offset: const Offset(0, 2),
                     ),
+                    const SizedBox(height: 32),
+
+                    // Submit Button
+                    Container(
+                      height: 52,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.1),
+                            blurRadius: 8,
+                            offset: const Offset(0, 2),
+                          ),
+                        ],
+                      ),
+                      child: ElevatedButton(
+                        onPressed: _submitForm,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.black87,
+                          foregroundColor: Colors.white,
+                          elevation: 0,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          padding: const EdgeInsets.symmetric(vertical: 16),
+                        ),
+                        child: const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.save, size: 20),
+                            SizedBox(width: 8),
+                            Text(
+                              'Save Transaction',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                                letterSpacing: 0.5,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+
+                    // Bottom padding for safe area
+                    SizedBox(height: MediaQuery.of(context).padding.bottom + 16),
                   ],
                 ),
-                child: ElevatedButton(
-                  onPressed: _submitForm,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.black87,
-                    foregroundColor: Colors.white,
-                    elevation: 0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                  ),
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.save, size: 20),
-                      SizedBox(width: 8),
-                      Text(
-                        'Save Transaction',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          letterSpacing: 0.5,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
               ),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
