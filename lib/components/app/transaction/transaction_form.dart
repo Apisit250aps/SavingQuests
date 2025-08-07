@@ -32,7 +32,7 @@ class _TransactionFormState extends State<TransactionForm> {
       final DateTime now = DateTime.now();
 
       final transaction = Transaction(
-        wallet: _controller.defaultWallet,
+        walletId: _controller.defaultWallet.key,
         name: _nameController.text,
         desc: _descController.text,
         amount: amount,

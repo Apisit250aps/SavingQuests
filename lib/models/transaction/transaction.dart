@@ -1,14 +1,13 @@
 import 'package:hive/hive.dart';
 import 'package:save_quests/models/enum/transaction_category/transaction_category.dart';
 import 'package:save_quests/models/enum/transaction_type/transaction_type.dart';
-import 'package:save_quests/models/wallet/wallet.dart';
 
 part 'transaction.g.dart';
 
 @HiveType(typeId: 1)
 class Transaction extends HiveObject {
   @HiveField(0)
-  Wallet wallet;
+  int walletId;
 
   @HiveField(1)
   String name;
@@ -32,7 +31,7 @@ class Transaction extends HiveObject {
   DateTime updatedAt;
 
   Transaction({
-    required this.wallet,
+    required this.walletId,
     required this.name,
     required this.desc,
     required this.amount,
