@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:save_quests/components/ui/app_bottom_navigation.dart';
 import 'package:save_quests/controllers/view_controller.dart';
 
 class MainView extends GetView<ViewController> {

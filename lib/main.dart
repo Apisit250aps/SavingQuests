@@ -3,8 +3,11 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:save_quests/controllers/bindings/initial_bindings.dart';
 import 'package:save_quests/views/main_view.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
   runApp(const SavingQuests());
 }
 
@@ -14,7 +17,7 @@ class SavingQuests extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Flutter Demo',
+      title: 'Saving Quests',
       theme: ThemeData(
         textTheme: GoogleFonts.itimTextTheme(),
         colorScheme: ColorScheme.fromSeed(
