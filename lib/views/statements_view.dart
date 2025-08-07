@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class TransactionsView extends StatelessWidget {
-  const TransactionsView({super.key});
+class StatementView extends StatelessWidget {
+  const StatementView({super.key});
 
   @override
   Widget build(BuildContext context) {

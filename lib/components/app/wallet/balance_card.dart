@@ -1,20 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/state_manager.dart';
-import 'package:save_quests/components/app/transaction/transaction_card.dart';
+import 'package:get/get.dart';
 import 'package:save_quests/components/share/app_card.dart';
 import 'package:save_quests/controllers/wallet_controller.dart';
-
-class HomeView extends GetView<WalletController> {
-  const HomeView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      child: Column(spacing: 10, children: [BalanceCard(), TransactionsCard()]),
-    );
-  }
-}
 
 class BalanceCard extends GetWidget<WalletController> {
   const BalanceCard({super.key});
@@ -29,7 +16,12 @@ class BalanceCard extends GetWidget<WalletController> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text("฿ ${controller.balances}", style: TextStyle(fontSize: 32)),
+              Obx(
+                () => Text(
+                  "฿ ${controller.balances}",
+                  style: TextStyle(fontSize: 32),
+                ),
+              ),
               // Column(
               //   mainAxisAlignment: MainAxisAlignment.center,
               //   crossAxisAlignment: CrossAxisAlignment.end,

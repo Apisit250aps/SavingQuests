@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
-import 'package:save_quests/views/home/home_view.dart';
-import 'package:save_quests/views/transactions/transactions_view.dart';
+import 'package:save_quests/views/wallet_view.dart';
+import 'package:save_quests/views/statements_view.dart';
 
 class ViewController extends GetxController {
   var currentIndex = 0.obs;
@@ -11,12 +11,12 @@ class ViewController extends GetxController {
 
   final List<ViewItem> views = [
     ViewItem(
-      view: HomeView(),
+      view: WalletView(),
       icon: Icon(PhosphorIcons.wallet(), size: 32.0),
       title: "Wallet",
     ),
     ViewItem(
-      view: TransactionsView(),
+      view: StatementView(),
       icon: Icon(PhosphorIcons.cardholder(), size: 32.0),
       title: "Statements",
     ),

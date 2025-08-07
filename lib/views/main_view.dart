@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:save_quests/controllers/view_controller.dart';
+import 'package:save_quests/views/transactions_view.dart';
 
 class MainView extends GetView<ViewController> {
   const MainView({super.key});
@@ -24,6 +26,13 @@ class MainView extends GetView<ViewController> {
           (index) => controller.views[index].view,
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => Get.to(TransactionsView()),
+        shape: CircleBorder(),
+        backgroundColor: Colors.black87,
+        child: Icon(PhosphorIcons.piggyBank(), size: 32.0, color: Colors.white),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       // bottomNavigationBar: AppBottomNavigation(),
     );
   }

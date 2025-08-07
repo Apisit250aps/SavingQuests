@@ -26,10 +26,12 @@ class WalletController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    //
     initialBox();
-    //
-    initialWallet();
+    _setup();
+  }
+
+  void _setup() async {
+    await initialWallet();
     loadTransactions();
   }
 
@@ -43,10 +45,10 @@ class WalletController extends GetxController {
     );
   }
 
-  void initialWallet() {
+  Future<void> initialWallet() async {
     final wallet = walletBox.values.toList();
     if (wallet.isEmpty) {
-      walletBox.add(
+      await walletBox.add(
         Wallet(
           name: "default",
           desc: "-",
@@ -69,6 +71,20 @@ class WalletController extends GetxController {
             .toList();
 
     transactions.assignAll(txs);
+
+    print("จำนวน transactions: ${transactions.length}");
+
+    for (var tx in transactions) {
+      print('--- Transaction ---');
+      print('ชื่อ: ${tx.name}');
+      print('รายละเอียด: ${tx.desc}');
+      print('จำนวนเงิน: ${tx.amount}');
+      print('ประเภท: ${tx.type.name}');
+      print('หมวดหมู่: ${tx.category.name}');
+      print('วันที่สร้าง: ${tx.createdAt}');
+      print('วันที่แก้ไข: ${tx.updatedAt}');
+      print('Wallet key: ${tx.wallet.key}');
+    }
   }
 
   Future<void> addTransaction(Transaction tx) async {
