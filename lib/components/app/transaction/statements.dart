@@ -107,7 +107,7 @@ class Statements extends GetWidget<WalletController> {
                     final transactions = entry.value;
                     final sortedTxs = [...transactions]; // สร้างสำเนา
                     sortedTxs.sort(
-                      (a, b) => a.createdAt.compareTo(b.createdAt),
+                      (b, a) => a.createdAt.compareTo(b.createdAt),
                     );
 
                     return Column(

@@ -34,15 +34,29 @@ class TransactionsCard extends GetWidget<WalletController> {
             ],
           ),
           const SizedBox(height: 25),
-          Obx(
-            () => Column(
+          Obx(() {
+            final transactions = controller.transactions;
+            final sortedTxs = [...transactions];
+            sortedTxs.sort((b, a) => a.createdAt.compareTo(b.createdAt));
+            if (sortedTxs.isEmpty) {
+              return const Center(
+                child: Padding(
+                  padding: EdgeInsets.all(20),
+                  child: Text(
+                    'No transactions found',
+                    style: TextStyle(color: Colors.grey, fontSize: 16),
+                  ),
+                ),
+              );
+            }
+            return Column(
               spacing: 10,
               children:
-                  controller.transactions.reversed
+                  sortedTxs
                       .map((tx) => TransactionItem(transaction: tx))
                       .toList(),
-            ),
-          ),
+            );
+          }),
         ],
       ),
     );

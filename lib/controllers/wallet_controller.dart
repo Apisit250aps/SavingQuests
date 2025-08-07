@@ -234,6 +234,11 @@ class WalletController extends GetxController {
     loadTransactions();
   }
 
+  Future<void> updateTransactionByKey(int key, Transaction tx) async {
+    await transactionBox.put(3, tx);
+    loadTransactions();
+  }
+
   Future<void> deleteTransaction(Transaction tx) async {
     await tx.delete();
     loadTransactions();
