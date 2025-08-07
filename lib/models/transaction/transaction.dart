@@ -1,4 +1,5 @@
 import 'package:hive/hive.dart';
+import 'package:save_quests/models/enum/transaction_category/transaction_category.dart';
 import 'package:save_quests/models/enum/transaction_type/transaction_type.dart';
 import 'package:save_quests/models/wallet/wallet.dart';
 
@@ -22,9 +23,12 @@ class Transaction extends HiveObject {
   TransactionType type;
 
   @HiveField(5)
-  DateTime createdAt;
+  TransactionCategory category;
 
   @HiveField(6)
+  DateTime createdAt;
+
+  @HiveField(7)
   DateTime updatedAt;
 
   Transaction({
@@ -32,7 +36,8 @@ class Transaction extends HiveObject {
     required this.name,
     required this.desc,
     required this.amount,
-    required this.type,
+    this.type = TransactionType.expense,
+    this.category = TransactionCategory.other,
     required this.createdAt,
     required this.updatedAt,
   });
