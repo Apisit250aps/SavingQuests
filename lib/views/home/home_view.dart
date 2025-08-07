@@ -16,7 +16,7 @@ class HomeView extends GetView<WalletController> {
   }
 }
 
-class BalanceCard extends StatelessWidget {
+class BalanceCard extends GetWidget<WalletController> {
   const BalanceCard({super.key});
 
   @override
@@ -29,12 +29,12 @@ class BalanceCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text("฿5000", style: TextStyle(fontSize: 32)),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [Text("+ 130%"), Text("+50%")],
-              ),
+              Text("฿ ${controller.balances}", style: TextStyle(fontSize: 32)),
+              // Column(
+              //   mainAxisAlignment: MainAxisAlignment.center,
+              //   crossAxisAlignment: CrossAxisAlignment.end,
+              //   children: [Text("+ 130%"), Text("+50%")],
+              // ),
             ],
           ),
         ],

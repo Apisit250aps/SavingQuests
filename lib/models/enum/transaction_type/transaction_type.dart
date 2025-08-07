@@ -10,3 +10,23 @@ enum TransactionType {
   @HiveField(1)
   expense,    // รายจ่าย
 }
+
+extension TransactionTypeExtension on TransactionType {
+  String get label {
+    switch (this) {
+      case TransactionType.income:
+        return "รายรับ";
+      case TransactionType.expense:
+        return "รายจ่าย";
+    }
+  }
+
+  int get sign {
+    switch (this) {
+      case TransactionType.income:
+        return 1;
+      case TransactionType.expense:
+        return -1;
+    }
+  }
+}
