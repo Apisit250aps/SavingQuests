@@ -169,6 +169,7 @@ class TransactionFormController extends GetxController {
     if (isEditMode) {
       Get.dialog(
         AlertDialog(
+          backgroundColor: Colors.white,
           title: const Text('Delete Transaction'),
           content: const Text(
             'Are you sure you want to delete this transaction? This action cannot be undone.',
@@ -179,7 +180,7 @@ class TransactionFormController extends GetxController {
           actions: [
             TextButton(
               onPressed: () => Get.back(),
-              child: const Text('Cancel'),
+              child: Text('Cancel', style: TextStyle(color: Colors.black)),
             ),
             ElevatedButton(
               onPressed: () {
@@ -272,7 +273,7 @@ class TransactionForm extends StatelessWidget {
                 if (controller.isEditMode)
                   IconButton(
                     onPressed: controller.deleteTransaction,
-                    icon: const Icon(Icons.delete, color: Colors.red),
+                    icon: Icon(Icons.delete, color: Colors.pink[500]),
                     padding: const EdgeInsets.all(8),
                   ),
                 IconButton(
@@ -280,7 +281,7 @@ class TransactionForm extends StatelessWidget {
                     Get.delete<TransactionFormController>();
                     Get.back();
                   },
-                  icon: const Icon(Icons.close, color: Colors.black54),
+                  icon: Icon(Icons.close, color: Colors.pink[200]),
                   padding: const EdgeInsets.all(8),
                 ),
               ],
@@ -538,7 +539,7 @@ class TransactionForm extends StatelessWidget {
                         onPressed: controller.submitForm,
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.pink[50],
-                          foregroundColor: Colors.pink[200],
+                          foregroundColor: Colors.pink[300],
                           elevation: 0,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
@@ -548,7 +549,6 @@ class TransactionForm extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            
                             const SizedBox(width: 8),
                             Text(
                               controller.isEditMode
