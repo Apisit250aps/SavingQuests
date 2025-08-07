@@ -2,12 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:save_quests/controllers/bindings/initial_bindings.dart';
+import 'package:save_quests/models/transaction/transaction.dart';
+import 'package:save_quests/models/wallet/wallet.dart';
 import 'package:save_quests/views/main_view.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
+  Hive.registerAdapter(WalletAdapter());
+  Hive.registerAdapter(TransactionAdapter());
+
+  await Hive.openBox<Wallet>('wallets');
+  await Hive.openBox<Transaction>('transactions');
+
   runApp(const SavingQuests());
 }
 
