@@ -31,14 +31,7 @@ class Statements extends GetWidget<WalletController> {
               const Spacer(),
               IconButton(
                 onPressed: () => _showFilterDialog(context),
-                icon: Obx(
-                  () => Icon(
-                    Icons.filter_list,
-                    size: 20,
-                    color:
-                        controller.hasActiveFilter ? Colors.blue : Colors.grey,
-                  ),
-                ),
+                icon:Icon(Icons.filter_list, size: 20),
               ),
             ],
           ),
@@ -54,7 +47,7 @@ class Statements extends GetWidget<WalletController> {
                         vertical: 4,
                       ),
                       decoration: BoxDecoration(
-                        color: Colors.blue.withOpacity(0.1),
+                        color: Colors.pink[50],
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Row(
@@ -62,18 +55,18 @@ class Statements extends GetWidget<WalletController> {
                         children: [
                           Text(
                             controller.getFilterSummary(),
-                            style: const TextStyle(
+                            style:  TextStyle(
                               fontSize: 12,
-                              color: Colors.blue,
+                              color: Colors.pink.shade300,
                             ),
                           ),
                           const SizedBox(width: 4),
                           GestureDetector(
                             onTap: () => controller.clearFilters(),
-                            child: const Icon(
+                            child: Icon(
                               Icons.close,
                               size: 14,
-                              color: Colors.blue,
+                              color: Colors.pink.shade300,
                             ),
                           ),
                         ],

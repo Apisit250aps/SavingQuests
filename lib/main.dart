@@ -35,7 +35,8 @@ class SavingQuests extends StatelessWidget {
       theme: ThemeData(
         textTheme: GoogleFonts.itimTextTheme(),
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.white,
+          primary: Colors.white,
+          seedColor: Colors.pink,
           surface: Colors.white,
           onSurface: Colors.black,
           onError: Colors.red,
@@ -53,11 +54,12 @@ class SavingQuests extends StatelessWidget {
         scaffoldBackgroundColor: Colors.white,
         iconButtonTheme: IconButtonThemeData(
           style: ButtonStyle(
-            backgroundColor: WidgetStateProperty.all<Color>(Colors.grey[200]!),
-            iconColor: WidgetStateProperty.all<Color>(Colors.black),
+            backgroundColor: WidgetStateProperty.all<Color>(Colors.pink[50]!),
+            iconColor: WidgetStateProperty.all<Color>(Colors.pink.shade200),
             shape: WidgetStateProperty.all<OutlinedBorder>(CircleBorder()),
           ),
         ),
+        bottomSheetTheme: BottomSheetThemeData(surfaceTintColor: Colors.white),
       ),
       initialBinding: InitialBinding(),
       home: const MainView(),

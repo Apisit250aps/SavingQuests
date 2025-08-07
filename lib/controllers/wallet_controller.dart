@@ -14,10 +14,12 @@ class WalletController extends GetxController {
 
   final RxList<Wallet> wallets = <Wallet>[].obs;
   final RxList<Transaction> transactions = <Transaction>[].obs;
-  
+
   // Filter properties
   final Rx<TransactionType?> selectedType = Rx<TransactionType?>(null);
-  final Rx<TransactionCategory?> selectedCategory = Rx<TransactionCategory?>(null);
+  final Rx<TransactionCategory?> selectedCategory = Rx<TransactionCategory?>(
+    null,
+  );
   final Rx<DateTime?> startDate = Rx<DateTime?>(null);
   final Rx<DateTime?> endDate = Rx<DateTime?>(null);
 
@@ -32,95 +34,110 @@ class WalletController extends GetxController {
   // Filtered transactions getter
   List<Transaction> get filteredTransactions {
     List<Transaction> filtered = List.from(transactions);
-    
+
     // Filter by type
     if (selectedType.value != null) {
       filtered = filtered.where((tx) => tx.type == selectedType.value).toList();
     }
-    
+
     // Filter by category
     if (selectedCategory.value != null) {
-      filtered = filtered.where((tx) => tx.category == selectedCategory.value).toList();
+      filtered =
+          filtered
+              .where((tx) => tx.category == selectedCategory.value)
+              .toList();
     }
-    
+
     // Filter by date range
     if (startDate.value != null) {
-      filtered = filtered.where((tx) => 
-        tx.createdAt.isAfter(startDate.value!.subtract(const Duration(days: 1)))
-      ).toList();
+      filtered =
+          filtered
+              .where(
+                (tx) => tx.createdAt.isAfter(
+                  startDate.value!.subtract(const Duration(days: 1)),
+                ),
+              )
+              .toList();
     }
-    
+
     if (endDate.value != null) {
-      filtered = filtered.where((tx) => 
-        tx.createdAt.isBefore(endDate.value!.add(const Duration(days: 1)))
-      ).toList();
+      filtered =
+          filtered
+              .where(
+                (tx) => tx.createdAt.isBefore(
+                  endDate.value!.add(const Duration(days: 1)),
+                ),
+              )
+              .toList();
     }
-    
+
     // Sort by date (newest first)
     filtered.sort((a, b) => b.createdAt.compareTo(a.createdAt));
-    
+
     return filtered;
   }
 
   // Group transactions by date
   Map<DateTime, List<Transaction>> get groupedFilteredTransactions {
     final Map<DateTime, List<Transaction>> grouped = {};
-    
+
     for (final transaction in filteredTransactions) {
       final date = DateTime(
         transaction.createdAt.year,
         transaction.createdAt.month,
         transaction.createdAt.day,
       );
-      
+
       if (grouped[date] == null) {
         grouped[date] = [];
       }
       grouped[date]!.add(transaction);
     }
-    
+
     // Sort each day's transactions by time (newest first)
     for (final dateTransactions in grouped.values) {
       dateTransactions.sort((a, b) => b.createdAt.compareTo(a.createdAt));
     }
-    
+
     // Sort dates (newest first)
-    final sortedEntries = grouped.entries.toList()
-      ..sort((a, b) => b.key.compareTo(a.key));
-    
+    final sortedEntries =
+        grouped.entries.toList()..sort((a, b) => b.key.compareTo(a.key));
+
     return Map.fromEntries(sortedEntries);
   }
 
   // Check if any filter is active
   bool get hasActiveFilter {
     return selectedType.value != null ||
-           selectedCategory.value != null ||
-           startDate.value != null ||
-           endDate.value != null;
+        selectedCategory.value != null ||
+        startDate.value != null ||
+        endDate.value != null;
   }
 
   // Get filter summary text
   String getFilterSummary() {
     final List<String> filters = [];
-    
+
     if (selectedType.value != null) {
       filters.add(selectedType.value!.label);
     }
-    
+
     if (selectedCategory.value != null) {
       filters.add(_getCategoryLabel(selectedCategory.value!));
     }
-    
+
     if (startDate.value != null || endDate.value != null) {
       if (startDate.value != null && endDate.value != null) {
-        filters.add('${_formatDate(startDate.value!)} - ${_formatDate(endDate.value!)}');
+        filters.add(
+          '${_formatDate(startDate.value!)} - ${_formatDate(endDate.value!)}',
+        );
       } else if (startDate.value != null) {
         filters.add('จาก ${_formatDate(startDate.value!)}');
       } else if (endDate.value != null) {
         filters.add('ถึง ${_formatDate(endDate.value!)}');
       }
     }
-    
+
     return filters.join(', ');
   }
 
@@ -234,11 +251,6 @@ class WalletController extends GetxController {
     loadTransactions();
   }
 
-  Future<void> updateTransactionByKey(int key, Transaction tx) async {
-    await transactionBox.put(3, tx);
-    loadTransactions();
-  }
-
   Future<void> deleteTransaction(Transaction tx) async {
     await tx.delete();
     loadTransactions();
@@ -247,5 +259,27 @@ class WalletController extends GetxController {
   Future<void> deleteTransactionByKey(dynamic key) async {
     await transactionBox.delete(key);
     loadTransactions();
+  }
+
+  Future<void> updateTransactionByKey(
+    dynamic key,
+    Transaction newTransaction,
+  ) async {
+    // Get the existing transaction
+    final existingTransaction = transactionBox.get(key);
+    if (existingTransaction != null) {
+      // Update the fields
+      existingTransaction.name = newTransaction.name;
+      existingTransaction.desc = newTransaction.desc;
+      existingTransaction.amount = newTransaction.amount;
+      existingTransaction.type = newTransaction.type;
+      existingTransaction.category = newTransaction.category;
+      existingTransaction.createdAt = newTransaction.createdAt;
+      existingTransaction.updatedAt = newTransaction.updatedAt;
+
+      // Save the changes
+      await existingTransaction.save();
+      loadTransactions();
+    }
   }
 }
