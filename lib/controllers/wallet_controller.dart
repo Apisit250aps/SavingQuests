@@ -55,9 +55,7 @@ class WalletController extends GetxController {
         updatedAt: DateTime.now(),
       );
 
-      // บันทึกและรอให้เสร็จ
       await walletBox.add(newWallet);
-      print("Created new wallet with key: ${newWallet.key}");
     }
 
     loadWallets();
@@ -65,36 +63,23 @@ class WalletController extends GetxController {
 
   void loadWallets() {
     wallets.assignAll(walletBox.values.toList());
-    print("Loaded wallets: ${wallets.length}");
   }
 
   void loadTransactions() {
     if (wallets.isEmpty) {
-      print("No wallets available");
       return;
     }
-
     final allTransactions = transactionBox.values.toList();
-    print("Total transactions in box: ${allTransactions.length}");
-
     final filteredTransactions =
         allTransactions
             .where((tx) => tx.walletId == defaultWallet.key)
             .toList();
-
     transactions.assignAll(filteredTransactions);
-    print("Transactions for default wallet: ${transactions.length}");
   }
 
   Future<void> addTransaction(Transaction tx) async {
-    // ให้แน่ใจว่า wallet reference ถูกต้อง
     tx.walletId = defaultWallet.key;
-
-    // บันทึกและรอให้เสร็จ
     await transactionBox.add(tx);
-    print("Added transaction with key: ${tx.key}");
-
-    // รีโหลดข้อมูล
     loadTransactions();
   }
 

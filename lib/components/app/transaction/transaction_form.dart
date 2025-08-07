@@ -47,7 +47,7 @@ class _TransactionFormState extends State<TransactionForm> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: const Text(
-            'บันทึกสำเร็จ',
+            'Transaction saved successfully',
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.w500,
@@ -162,7 +162,7 @@ class _TransactionFormState extends State<TransactionForm> {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      'เพิ่มรายการรับ-จ่ายใหม่',
+                      'Add a new income or expense transaction',
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.grey[600],
@@ -176,20 +176,20 @@ class _TransactionFormState extends State<TransactionForm> {
               // Form Fields
               TextFormField(
                 controller: _nameController,
-                decoration: _buildInputDecoration('ชื่อรายการ', icon: Icons.receipt_long),
+                decoration: _buildInputDecoration('Transaction Name', icon: Icons.receipt_long),
                 style: const TextStyle(
                   fontSize: 16,
                   color: Colors.black87,
                   fontWeight: FontWeight.w500,
                 ),
                 validator: (value) =>
-                    value == null || value.isEmpty ? 'กรุณาระบุชื่อ' : null,
+                    value == null || value.isEmpty ? 'Please enter a name' : null,
               ),
               const SizedBox(height: 20),
 
               TextFormField(
                 controller: _descController,
-                decoration: _buildInputDecoration('รายละเอียด', icon: Icons.notes),
+                decoration: _buildInputDecoration('Description', icon: Icons.notes),
                 style: const TextStyle(
                   fontSize: 16,
                   color: Colors.black87,
@@ -202,7 +202,7 @@ class _TransactionFormState extends State<TransactionForm> {
 
               TextFormField(
                 controller: _amountController,
-                decoration: _buildInputDecoration('จำนวนเงิน', icon: Icons.attach_money),
+                decoration: _buildInputDecoration('Amount', icon: Icons.attach_money),
                 style: const TextStyle(
                   fontSize: 18,
                   color: Colors.black87,
@@ -211,7 +211,7 @@ class _TransactionFormState extends State<TransactionForm> {
                 keyboardType: TextInputType.number,
                 validator: (value) =>
                     value == null || double.tryParse(value) == null
-                        ? 'กรุณาระบุจำนวนเงิน'
+                        ? 'Please enter a valid amount'
                         : null,
               ),
               const SizedBox(height: 20),
@@ -250,7 +250,7 @@ class _TransactionFormState extends State<TransactionForm> {
                       onChanged: (val) {
                         if (val != null) setState(() => _selectedType = val);
                       },
-                      decoration: _buildInputDecoration('ประเภท'),
+                      decoration: _buildInputDecoration('Type'),
                       dropdownColor: Colors.white,
                       style: const TextStyle(color: Colors.black87),
                     ),
@@ -274,7 +274,7 @@ class _TransactionFormState extends State<TransactionForm> {
                       onChanged: (val) {
                         if (val != null) setState(() => _selectedCategory = val);
                       },
-                      decoration: _buildInputDecoration('หมวดหมู่'),
+                      decoration: _buildInputDecoration('Category'),
                       dropdownColor: Colors.white,
                       style: const TextStyle(color: Colors.black87),
                     ),
@@ -287,7 +287,7 @@ class _TransactionFormState extends State<TransactionForm> {
                 onTap: () => _pickDate(context),
                 borderRadius: BorderRadius.circular(12),
                 child: InputDecorator(
-                  decoration: _buildInputDecoration('วันที่', icon: Icons.calendar_today),
+                  decoration: _buildInputDecoration('Date', icon: Icons.calendar_today),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -339,7 +339,7 @@ class _TransactionFormState extends State<TransactionForm> {
                       Icon(Icons.save, size: 20),
                       SizedBox(width: 8),
                       Text(
-                        'บันทึกรายการ',
+                        'Save Transaction',
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
