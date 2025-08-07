@@ -1,4 +1,5 @@
 import 'package:hive/hive.dart';
+import 'package:save_quests/models/enum/transaction_type/transaction_type.dart';
 import 'package:save_quests/models/wallet/wallet.dart';
 
 part 'transaction.g.dart';
@@ -18,7 +19,7 @@ class Transaction extends HiveObject {
   double amount;
 
   @HiveField(4)
-  int type; // -1 = รายจ่าย, 1 = รายรับ
+  TransactionType type;
 
   @HiveField(5)
   DateTime createdAt;
