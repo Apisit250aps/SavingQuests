@@ -307,8 +307,9 @@ class _TransactionFormState extends State<TransactionForm> {
                                 )
                                 .toList(),
                             onChanged: (val) {
-                              if (val != null)
+                              if (val != null) {
                                 setState(() => _selectedCategory = val);
+                              }
                             },
                             decoration: _buildInputDecoration('Category'),
                             dropdownColor: Colors.white,

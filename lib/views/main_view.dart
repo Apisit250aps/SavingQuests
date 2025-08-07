@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:save_quests/components/app/transaction/transaction_form.dart';
 import 'package:save_quests/controllers/view_controller.dart';
-import 'package:save_quests/views/transactions_view.dart';
 
 class MainView extends GetView<ViewController> {
   const MainView({super.key});
