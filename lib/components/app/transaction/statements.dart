@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:save_quests/components/app/transaction/transaction_item.dart';
 import 'package:save_quests/components/share/app_card.dart';
 import 'package:save_quests/controllers/wallet_controller.dart';
@@ -30,7 +31,7 @@ class Statements extends GetWidget<WalletController> {
               const Spacer(),
               IconButton(
                 onPressed: () => _showFilterDialog(context),
-                icon:Icon(Icons.filter_list, size: 20),
+                icon:Icon(PhosphorIcons.funnelSimple(), size: 20),
               ),
             ],
           ),

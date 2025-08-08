@@ -12,7 +12,7 @@ class BalanceCard extends GetWidget<WalletController> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Balance", style: TextStyle(fontSize: 16)),
+          Text("Balance", style: TextStyle(fontSize: 18)),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -29,7 +29,7 @@ class BalanceCard extends GetWidget<WalletController> {
               // ),
             ],
           ),
-          Divider()
+          Divider(color: Colors.pink[200]),
         ],
       ),
     );

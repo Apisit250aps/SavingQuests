@@ -36,7 +36,7 @@ class MainView extends GetView<ViewController> {
         shape: CircleBorder(),
         elevation: 1,
         backgroundColor: Colors.pink[50],
-        child: Icon(PhosphorIcons.piggyBank(), size: 32.0, color: Colors.pink.shade200),
+        child: Icon(PhosphorIcons.piggyBank()),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       // bottomNavigationBar: AppBottomNavigation(),

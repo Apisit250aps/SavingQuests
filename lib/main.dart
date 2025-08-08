@@ -10,11 +10,9 @@ import 'package:save_quests/models/wallet/wallet.dart';
 import 'package:save_quests/views/main_view.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
+
   GoogleFonts.config.allowRuntimeFetching = false;
 
   await Hive.initFlutter();
@@ -62,11 +60,19 @@ class SavingQuests extends StatelessWidget {
         iconButtonTheme: IconButtonThemeData(
           style: ButtonStyle(
             backgroundColor: WidgetStateProperty.all<Color>(Colors.pink[50]!),
-            iconColor: WidgetStateProperty.all<Color>(Colors.pink.shade200),
+            iconColor: WidgetStateProperty.all<Color>(Colors.pink.shade300),
             shape: WidgetStateProperty.all<OutlinedBorder>(CircleBorder()),
           ),
         ),
-        bottomSheetTheme: BottomSheetThemeData(surfaceTintColor: Colors.white),
+        bottomSheetTheme: BottomSheetThemeData(
+          surfaceTintColor: Colors.white,
+          backgroundColor: Colors.white,
+        ),
+        floatingActionButtonTheme: FloatingActionButtonThemeData(
+          backgroundColor: Colors.pink[50],
+          foregroundColor: Colors.pink[300],
+          iconSize: 32,
+        ),
       ),
       initialBinding: InitialBinding(),
       localizationsDelegates: [

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:save_quests/components/app/transaction/transaction_form.dart';
 import 'package:save_quests/models/enum/transaction_category/transaction_category.dart';
 import 'package:save_quests/models/enum/transaction_type/transaction_type.dart';
@@ -32,7 +33,7 @@ class TransactionItem extends StatelessWidget {
             ),
             child: Icon(
               categoryIcon(transaction.category),
-              color: Colors.pink[200],
+              color: Colors.pink[300],
               size: 20,
             ),
           ),
@@ -97,17 +98,17 @@ class TransactionItem extends StatelessWidget {
   IconData categoryIcon(TransactionCategory category) {
     switch (category) {
       case TransactionCategory.food:
-        return Icons.restaurant;
+        return PhosphorIcons.pizza();
       case TransactionCategory.shopping:
-        return Icons.shopping_cart;
+        return PhosphorIcons.shoppingBag();
       case TransactionCategory.bills:
-        return Icons.receipt_long;
+        return PhosphorIcons.invoice();
       case TransactionCategory.transport:
-        return Icons.directions_car;
+        return PhosphorIcons.car();
       case TransactionCategory.entertainment:
-        return Icons.movie;
+        return PhosphorIcons.popcorn();
       case TransactionCategory.other:
-        return Icons.category;
+        return PhosphorIcons.dotsThreeOutline();
     }
   }
 
