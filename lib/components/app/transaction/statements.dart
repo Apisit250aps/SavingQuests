@@ -1,4 +1,3 @@
-// transactions_card.dart
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:save_quests/components/app/transaction/transaction_item.dart';

@@ -1,4 +1,3 @@
-// wallet_controller.dart
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:save_quests/models/enum/transaction_category/transaction_category.dart';
