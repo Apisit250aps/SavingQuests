@@ -81,7 +81,7 @@ class TransactionItem extends StatelessWidget {
                 ),
               ),
               Text(
-                DateFormat('d MMM yyyy | hh:mm').format(transaction.createdAt),
+                DateFormat('d MMM yyyy | HH:mm').format(transaction.createdAt),
                 style: const TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w500,
