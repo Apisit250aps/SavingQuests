@@ -14,7 +14,7 @@ class MainView extends GetView<ViewController> {
         title: Obx(
           () => Text(
             controller.views[controller.currentIndex.value].title,
-            style: TextStyle(fontWeight: FontWeight.w600),
+            style: TextStyle(fontWeight: FontWeight.w400),
           ),
         ),
       ),
@@ -34,7 +34,6 @@ class MainView extends GetView<ViewController> {
               backgroundColor: Colors.transparent,
             ),
         shape: CircleBorder(),
-        elevation: 1,
         backgroundColor: Colors.pink[50],
         child: Icon(PhosphorIcons.piggyBank()),
       ),

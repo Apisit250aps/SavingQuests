@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:save_quests/components/app/transaction/transaction_item.dart';
 import 'package:save_quests/components/share/app_card.dart';
 import 'package:save_quests/controllers/wallet_controller.dart';
@@ -25,12 +26,6 @@ class TransactionsCard extends GetWidget<WalletController> {
                 ),
               ),
               const Spacer(),
-              // IconButton(
-              //   onPressed: () {
-              //     print(">>> hello world");
-              //   },
-              //   icon: Icon(PhosphorIcons.plus(), size: 20),
-              // ),
             ],
           ),
           const SizedBox(height: 25),

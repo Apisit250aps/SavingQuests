@@ -40,11 +40,29 @@ class SavingQuests extends StatelessWidget {
         textTheme: GoogleFonts.itimTextTheme(),
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(
-          primary: Colors.white,
-          seedColor: Colors.pink,
-          surface: Colors.white,
-          onSurface: Colors.black,
+          primary: Colors.pink.shade200,
+          secondary: Colors.blue.shade200,
+          seedColor: Colors.white,
           onError: Colors.red,
+        ),
+        timePickerTheme: TimePickerThemeData(),
+        datePickerTheme: DatePickerThemeData(
+          dividerColor: Colors.pink.shade100,
+          confirmButtonStyle: ButtonStyle(
+            backgroundColor: WidgetStatePropertyAll(Colors.blue.shade200),
+            foregroundColor: WidgetStatePropertyAll(Colors.white),
+          ),
+          cancelButtonStyle: ButtonStyle(
+            foregroundColor: WidgetStatePropertyAll(Colors.blue.shade200),
+          ),
+        ),
+        buttonTheme: ButtonThemeData(buttonColor: Colors.blue.shade200),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ButtonStyle(
+            backgroundColor: WidgetStatePropertyAll(Colors.blue.shade200),
+            foregroundColor: WidgetStatePropertyAll(Colors.white),
+            elevation: WidgetStatePropertyAll(0),
+          ),
         ),
         appBarTheme: AppBarTheme(
           centerTitle: true,
@@ -59,19 +77,55 @@ class SavingQuests extends StatelessWidget {
         scaffoldBackgroundColor: Colors.white,
         iconButtonTheme: IconButtonThemeData(
           style: ButtonStyle(
-            backgroundColor: WidgetStateProperty.all<Color>(Colors.pink[50]!),
-            iconColor: WidgetStateProperty.all<Color>(Colors.pink.shade300),
-            shape: WidgetStateProperty.all<OutlinedBorder>(CircleBorder()),
+            backgroundColor: WidgetStateProperty.all<Color>(
+              Colors.pink.shade50,
+            ),
+            iconColor: WidgetStateProperty.all<Color>(Colors.pink.shade200),
           ),
         ),
         bottomSheetTheme: BottomSheetThemeData(
-          surfaceTintColor: Colors.white,
+          surfaceTintColor: Colors.pink.shade200,
           backgroundColor: Colors.white,
         ),
         floatingActionButtonTheme: FloatingActionButtonThemeData(
-          backgroundColor: Colors.pink[50],
-          foregroundColor: Colors.pink[300],
+          elevation: 0,
+          backgroundColor: Colors.pink.shade50,
+          foregroundColor: Colors.pink.shade200,
           iconSize: 32,
+        ),
+        inputDecorationTheme: InputDecorationTheme(
+          iconColor: Colors.blue.shade200,
+          labelStyle: const TextStyle(
+            color: Colors.black54,
+            fontSize: 14,
+            fontWeight: FontWeight.w400,
+          ),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: const BorderSide(color: Colors.black12, width: 1),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: const BorderSide(color: Colors.black12, width: 1),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide(color: Colors.blue.shade200, width: 1),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: const BorderSide(color: Colors.red, width: 1),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: const BorderSide(color: Colors.red, width: 2),
+          ),
+          filled: true,
+          fillColor: Colors.white,
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 12,
+          ),
         ),
       ),
       initialBinding: InitialBinding(),

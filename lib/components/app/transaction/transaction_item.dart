@@ -28,12 +28,12 @@ class TransactionItem extends StatelessWidget {
             width: 40,
             height: 40,
             decoration: BoxDecoration(
-              color: Colors.pink[50],
+              color: Colors.pink.shade50,
               borderRadius: BorderRadius.circular(8),
             ),
             child: Icon(
-              categoryIcon(transaction.category),
-              color: Colors.pink[300],
+              _categoryIcon(transaction.category),
+              color: Colors.pink.shade200,
               size: 20,
             ),
           ),
@@ -59,15 +59,7 @@ class TransactionItem extends StatelessWidget {
               ],
             ),
           ),
-
-          // Chart placeholder (simple line)
-          // Container(
-          //   width: 60,
-          //   height: 30,
-          //   child: CustomPaint(painter: MiniChartPainter(isPositive: isPositive)),
-          // ),
           const SizedBox(width: 12),
-
           // Price and Change
           Column(
             crossAxisAlignment: CrossAxisAlignment.end,
@@ -95,7 +87,7 @@ class TransactionItem extends StatelessWidget {
     );
   }
 
-  IconData categoryIcon(TransactionCategory category) {
+  IconData _categoryIcon(TransactionCategory category) {
     switch (category) {
       case TransactionCategory.food:
         return PhosphorIcons.pizza();

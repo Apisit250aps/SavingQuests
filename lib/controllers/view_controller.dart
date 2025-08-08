@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:save_quests/views/wallet_view.dart';
-import 'package:save_quests/views/statements_view.dart';
+import 'package:save_quests/views/transaction_view.dart';
 
 class ViewController extends GetxController {
   var currentIndex = 0.obs;
@@ -16,9 +16,9 @@ class ViewController extends GetxController {
       title: "Wallet",
     ),
     ViewItem(
-      view: StatementView(),
+      view: TransactionView(),
       icon: Icon(PhosphorIcons.cardholder(), size: 32.0),
-      title: "Statements",
+      title: "Transactions",
     ),
   ];
 

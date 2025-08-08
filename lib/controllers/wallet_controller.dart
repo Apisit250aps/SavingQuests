@@ -131,9 +131,9 @@ class WalletController extends GetxController {
           '${_formatDate(startDate.value!)} - ${_formatDate(endDate.value!)}',
         );
       } else if (startDate.value != null) {
-        filters.add('จาก ${_formatDate(startDate.value!)}');
+        filters.add('from ${_formatDate(startDate.value!)}');
       } else if (endDate.value != null) {
-        filters.add('ถึง ${_formatDate(endDate.value!)}');
+        filters.add('to ${_formatDate(endDate.value!)}');
       }
     }
 
@@ -143,17 +143,17 @@ class WalletController extends GetxController {
   String _getCategoryLabel(TransactionCategory category) {
     switch (category) {
       case TransactionCategory.other:
-        return 'อื่นๆ';
+        return 'other';
       case TransactionCategory.food:
-        return 'อาหาร';
+        return 'food';
       case TransactionCategory.shopping:
-        return 'ชอปปิง';
+        return 'shopping';
       case TransactionCategory.bills:
-        return 'บิล';
+        return 'bills';
       case TransactionCategory.transport:
-        return 'ค่าเดินทาง';
+        return 'transport';
       case TransactionCategory.entertainment:
-        return 'บันเทิง';
+        return 'entertainment';
     }
   }
 

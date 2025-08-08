@@ -5,9 +5,10 @@ import 'package:save_quests/models/enum/transaction_category/transaction_categor
 import 'package:save_quests/models/enum/transaction_type/transaction_type.dart';
 import 'package:save_quests/models/transaction/transaction.dart';
 
+
 class TransactionFormController extends GetxController {
   final Transaction? initialTransaction;
-  
+
   TransactionFormController({this.initialTransaction});
 
   final formKey = GlobalKey<FormState>();
@@ -16,7 +17,8 @@ class TransactionFormController extends GetxController {
   final amountController = TextEditingController();
 
   final Rx<TransactionType> selectedType = TransactionType.expense.obs;
-  final Rx<TransactionCategory> selectedCategory = TransactionCategory.other.obs;
+  final Rx<TransactionCategory> selectedCategory =
+      TransactionCategory.other.obs;
   final Rx<DateTime> selectedDate = DateTime.now().obs;
   final Rx<TimeOfDay> selectedTime = TimeOfDay.now().obs;
 
@@ -167,6 +169,7 @@ class TransactionFormController extends GetxController {
     if (isEditMode) {
       Get.dialog(
         AlertDialog(
+          backgroundColor: Colors.white,
           title: const Text('Delete Transaction'),
           content: const Text(
             'Are you sure you want to delete this transaction? This action cannot be undone.',
@@ -177,11 +180,13 @@ class TransactionFormController extends GetxController {
           actions: [
             TextButton(
               onPressed: () => Get.back(),
-              child: const Text('Cancel'),
+              child: Text('Cancel', style: TextStyle(color: Colors.black)),
             ),
             ElevatedButton(
               onPressed: () {
-                walletController.deleteTransactionByKey(initialTransaction!.key!);
+                walletController.deleteTransactionByKey(
+                  initialTransaction!.key!,
+                );
                 Get.back(); // Close dialog
                 Get.back(); // Close bottom sheet
                 Get.snackbar(

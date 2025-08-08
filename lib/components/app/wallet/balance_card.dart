@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:save_quests/components/share/app_card.dart';
 import 'package:save_quests/controllers/wallet_controller.dart';
 
@@ -16,6 +17,7 @@ class BalanceCard extends GetWidget<WalletController> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              Icon(PhosphorIcons.coins(), size: 32.0, color: Colors.pink[200],),
               Obx(
                 () => Text(
                   "฿ ${controller.balances}",
