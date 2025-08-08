@@ -27,12 +27,12 @@ class TransactionItem extends StatelessWidget {
             width: 40,
             height: 40,
             decoration: BoxDecoration(
-              color: const Color(0xFFF5F5F5),
+              color: Colors.pink[50],
               borderRadius: BorderRadius.circular(8),
             ),
             child: Icon(
               categoryIcon(transaction.category),
-              color: Colors.grey[700],
+              color: Colors.pink[200],
               size: 20,
             ),
           ),
@@ -80,7 +80,7 @@ class TransactionItem extends StatelessWidget {
                 ),
               ),
               Text(
-                DateFormat('d MMM yyyy | h:m').format(transaction.createdAt),
+                DateFormat('d MMM yyyy | hh:mm').format(transaction.createdAt),
                 style: const TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w500,
