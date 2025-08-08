@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:save_quests/controllers/transaction_form_controller.dart';
 import 'package:save_quests/models/enum/transaction_category/transaction_category.dart';
 import 'package:save_quests/models/enum/transaction_type/transaction_type.dart';
@@ -204,12 +205,21 @@ class TransactionForm extends StatelessWidget {
                                     .map(
                                       (category) => DropdownMenuItem(
                                         value: category,
-                                        child: Text(
-                                          category.name,
-                                          style: const TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w500,
-                                          ),
+                                        child: Row(
+                                          children: [
+                                            Icon(
+                                              _categoryIcon(category),
+                                              size: 20,
+                                            ),
+                                            const SizedBox(width: 8),
+                                            Text(
+                                              category.name,
+                                              style: const TextStyle(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                       ),
                                     )
@@ -358,6 +368,23 @@ class TransactionForm extends StatelessWidget {
     );
   }
 
+  IconData _categoryIcon(TransactionCategory category) {
+    switch (category) {
+      case TransactionCategory.food:
+        return PhosphorIcons.pizza();
+      case TransactionCategory.shopping:
+        return PhosphorIcons.shoppingBag();
+      case TransactionCategory.bills:
+        return PhosphorIcons.invoice();
+      case TransactionCategory.transport:
+        return PhosphorIcons.car();
+      case TransactionCategory.entertainment:
+        return PhosphorIcons.popcorn();
+      case TransactionCategory.other:
+        return PhosphorIcons.dotsThreeOutline();
+    }
+  }
+
   String _formatTime(TimeOfDay time) {
     final now = DateTime.now();
     final dt = DateTime(now.year, now.month, now.day, time.hour, time.minute);
@@ -368,7 +395,9 @@ class TransactionForm extends StatelessWidget {
     return InputDecoration(
       labelText: label,
       prefixIcon:
-          icon != null ? Icon(icon, color: Colors.pink.shade200, size: 20) : null,
+          icon != null
+              ? Icon(icon, color: Colors.pink.shade200, size: 20)
+              : null,
     );
   }
 }
