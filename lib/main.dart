@@ -45,15 +45,66 @@ class SavingQuests extends StatelessWidget {
           seedColor: Colors.white,
           onError: Colors.red,
         ),
-        timePickerTheme: TimePickerThemeData(),
-        datePickerTheme: DatePickerThemeData(
-          dividerColor: Colors.pink.shade100,
+        timePickerTheme: TimePickerThemeData(
+          helpTextStyle: TextStyle(
+            color: Colors.pink.shade200
+          ),
+          // backgroundColor: Colors.pink.shade50, // พื้นหลังละมุน
           confirmButtonStyle: ButtonStyle(
-            backgroundColor: WidgetStatePropertyAll(Colors.blue.shade200),
+            backgroundColor: WidgetStatePropertyAll(Colors.pink.shade200),
             foregroundColor: WidgetStatePropertyAll(Colors.white),
+            shape: WidgetStatePropertyAll(
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            ),
           ),
           cancelButtonStyle: ButtonStyle(
-            foregroundColor: WidgetStatePropertyAll(Colors.blue.shade200),
+            foregroundColor: WidgetStatePropertyAll(Colors.pink.shade200),
+          ),
+          // dialBackgroundColor: Colors.pink.shade50, // พื้นหลังวงล้อ
+          dialTextColor: Colors.pink.shade200, // ตัวเลขในวงล้อ
+          dialHandColor: Colors.pink.shade50, // เข็มชี้เวลา
+          hourMinuteColor: Colors.pink.shade50, // กล่องชั่วโมง/นาที
+          hourMinuteTextColor:
+              Colors.pink.shade200, // ตัวเลขในกล่องชั่วโมง/นาที
+          dayPeriodColor: Colors.pink.shade50, // AM/PM พื้นหลัง
+          dayPeriodTextColor: Colors.pink.shade200,
+          dayPeriodBorderSide: BorderSide(color: Colors.pink.shade200),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ), // มุมโค้งทั้งกล่อง
+        ),
+
+        datePickerTheme: DatePickerThemeData(
+          rangePickerHeaderForegroundColor: Colors.pink.shade200,
+          yearForegroundColor: WidgetStatePropertyAll(Colors.pink.shade300),
+          headerForegroundColor: Colors.pink.shade300,
+          weekdayStyle: TextStyle(color: Colors.pink.shade300),
+          dividerColor: Colors.pink.shade50, // เส้นคั่นอ่อน
+          dayOverlayColor: WidgetStatePropertyAll(Colors.pink.shade50),
+          dayBackgroundColor: WidgetStatePropertyAll(
+            Colors.pink.shade50,
+          ), // พื้นหลังวัน
+          dayForegroundColor: WidgetStatePropertyAll(
+            Colors.pink.shade800,
+          ), // สีตัวเลขวัน
+          todayBackgroundColor: WidgetStatePropertyAll(
+            Colors.pink.shade200,
+          ), // พื้นหลังของวันนี้
+          todayForegroundColor: WidgetStatePropertyAll(
+            Colors.white,
+          ), // ตัวหนังสือของวันนี้
+          confirmButtonStyle: ButtonStyle(
+            backgroundColor: WidgetStatePropertyAll(Colors.pink.shade200),
+            foregroundColor: WidgetStatePropertyAll(Colors.white),
+            shape: WidgetStatePropertyAll(
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            ),
+          ),
+          cancelButtonStyle: ButtonStyle(
+            foregroundColor: WidgetStatePropertyAll(Colors.pink.shade200),
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
           ),
         ),
         buttonTheme: ButtonThemeData(buttonColor: Colors.blue.shade200),
@@ -94,7 +145,7 @@ class SavingQuests extends StatelessWidget {
           iconSize: 32,
         ),
         inputDecorationTheme: InputDecorationTheme(
-          iconColor: Colors.blue.shade200,
+          iconColor: Colors.pink.shade200,
           labelStyle: const TextStyle(
             color: Colors.black54,
             fontSize: 14,
@@ -110,7 +161,7 @@ class SavingQuests extends StatelessWidget {
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
-            borderSide: BorderSide(color: Colors.blue.shade200, width: 1),
+            borderSide: BorderSide(color: Colors.pink.shade200, width: 1),
           ),
           errorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),

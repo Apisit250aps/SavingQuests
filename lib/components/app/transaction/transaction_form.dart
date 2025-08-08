@@ -368,7 +368,7 @@ class TransactionForm extends StatelessWidget {
     return InputDecoration(
       labelText: label,
       prefixIcon:
-          icon != null ? Icon(icon, color: Colors.blue.shade200, size: 20) : null,
+          icon != null ? Icon(icon, color: Colors.pink.shade200, size: 20) : null,
     );
   }
 }
