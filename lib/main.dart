@@ -46,9 +46,7 @@ class SavingQuests extends StatelessWidget {
           onError: Colors.red,
         ),
         timePickerTheme: TimePickerThemeData(
-          helpTextStyle: TextStyle(
-            color: Colors.pink.shade200
-          ),
+          helpTextStyle: TextStyle(color: Colors.pink.shade200),
           // backgroundColor: Colors.pink.shade50, // พื้นหลังละมุน
           confirmButtonStyle: ButtonStyle(
             backgroundColor: WidgetStatePropertyAll(Colors.pink.shade200),
@@ -144,6 +142,21 @@ class SavingQuests extends StatelessWidget {
           foregroundColor: Colors.pink.shade200,
           iconSize: 32,
         ),
+        chipTheme: ChipThemeData(
+          backgroundColor: Colors.blue.shade50, // พื้นหลัง chip
+          selectedColor: Colors.blue.shade100, // พื้นหลังเมื่อเลือก
+          elevation: 0, // ไม่ให้เงาลอย
+          pressElevation: 0, // กดแล้วก็ไม่ลอย
+          labelStyle: TextStyle(color: Colors.blue.shade300), // ตัวอักษรปกติ
+          secondaryLabelStyle: TextStyle(
+            color: Colors.white,
+          ), // ตัวอักษรตอนเลือก
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+            side: BorderSide(color: Colors.blue.shade300), // ขอบตรงกับสี label
+          ),
+        ),
+
         inputDecorationTheme: InputDecorationTheme(
           iconColor: Colors.pink.shade200,
           labelStyle: const TextStyle(

@@ -56,7 +56,7 @@ class Statements extends GetWidget<WalletController> {
                             controller.getFilterSummary(),
                             style:  TextStyle(
                               fontSize: 12,
-                              color: Colors.blue.shade200,
+                              color: Colors.blue.shade300,
                             ),
                           ),
                           const SizedBox(width: 4),
@@ -65,7 +65,7 @@ class Statements extends GetWidget<WalletController> {
                             child: Icon(
                               Icons.close,
                               size: 14,
-                              color: Colors.blue.shade200,
+                              color: Colors.blue.shade300,
                             ),
                           ),
                         ],
