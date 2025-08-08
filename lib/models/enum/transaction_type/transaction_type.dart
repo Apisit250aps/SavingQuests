@@ -15,9 +15,9 @@ extension TransactionTypeExtension on TransactionType {
   String get label {
     switch (this) {
       case TransactionType.income:
-        return "รายรับ";
+        return "income";
       case TransactionType.expense:
-        return "รายจ่าย";
+        return "expense";
     }
   }
 
