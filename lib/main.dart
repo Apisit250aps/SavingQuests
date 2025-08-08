@@ -11,6 +11,9 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await GoogleFonts.pendingFonts([GoogleFonts.itim()]);
+  
   await Hive.initFlutter();
   Hive.registerAdapter(WalletAdapter());
   Hive.registerAdapter(TransactionAdapter());
@@ -33,7 +36,7 @@ class SavingQuests extends StatelessWidget {
     return GetMaterialApp(
       title: 'Saving Quests',
       theme: ThemeData(
-        textTheme: GoogleFonts.itimTextTheme(),
+        textTheme: GoogleFonts.itimTextTheme(Theme.of(context).textTheme),
         colorScheme: ColorScheme.fromSeed(
           primary: Colors.white,
           seedColor: Colors.pink,
