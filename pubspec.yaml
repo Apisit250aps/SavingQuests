@@ -45,6 +45,7 @@ dependencies:
   flutter_localization: ^0.3.3
   flutter_localizations: # แก้ไขตรงนี้
     sdk: flutter
+  flutter_native_splash: ^2.4.6
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -70,6 +71,8 @@ flutter:
   uses-material-design: true
   assets:
     - assets/google_fonts/Itim-Regular.ttf
+    - assets/icon/icon.png
+    - assets/images/splash.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
@@ -111,3 +114,10 @@ flutter_launcher_icons:
   ios: true
   # image_path_ios: "assets/icon/icon.png"
   remove_alpha_ios: true
+
+flutter_native_splash:
+  color: "#ffffff"           
+  image: assets/images/splash.png  
+  android_12:
+    image: assets/images/splash.png
+    icon_background_color: "#ffffff"
